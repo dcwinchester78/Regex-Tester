@@ -27,7 +27,6 @@ namespace RegexTesterUI.ViewModels
             }
         }
 
-
         private string fileData;
 
         public string FileData
@@ -40,7 +39,6 @@ namespace RegexTesterUI.ViewModels
                 StringMatches = new List<string>();
             }
         }
-
 
         private string _multipleLineRegPattern;
 
@@ -139,6 +137,11 @@ namespace RegexTesterUI.ViewModels
 
         #region DelegateCommandMethods
 
+        /// <summary>
+        /// Command parameter from ui chooses which data to check
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         private bool CanExecute(string input)
         {          
             string lowPut = input.ToLower();
@@ -175,45 +178,61 @@ namespace RegexTesterUI.ViewModels
         private void Execute(string input)
         {           
             string lowPut = input.ToLower();
-            List<string> srMat = new List<string>();
 
             if (lowPut == "regmatchescommand")
-            {             
-                MatchCollection matches = _iReg.RegMatches(MultipleLineRegPattern, FileData);
-
-                if (matches != null)
-                {
-                    foreach (Match m in matches)
-                    {
-                        srMat.Add($"index {m.Index}: {m.ToString()}");
-                    }
-                }
-
-                StringMatches = srMat;          
-
-                //set the match count variable 
-                MatchesTextCount = "Matches: " +  String.Format("{0:n0}", StringMatches.Count);
+            {
+                PopulateRegMatches();
             }
 
             else if(lowPut == "regmatchcommand")
             {
-                Match mat = _iReg.RegMatch(SingleMatchRegPattern, SingleContentRegData);
-                if(mat != null)
-                {
-                    if(mat.Success)
-                    {
-                        IsMatch = "TRUE";
-                    }
-                    else
-                    {
-                        IsMatch = "FALSE";
-                    }
-                }
+                IsRegMatch();
+            }
+        }
 
+       /// <summary>
+       /// Populate list of regex matches
+       /// </summary>
+        private void PopulateRegMatches()
+        {
+            MatchCollection matches = _iReg.RegMatches(MultipleLineRegPattern, FileData);
+
+            //Add to a new string list, then assign srMat value to Property StringMatches
+            List<string> srMat = new List<string>();
+
+            if (matches != null)
+            {
+                foreach (Match m in matches)
+                {
+                    srMat.Add($"index {m.Index}: {m.ToString()}");
+                }
+            }
+            StringMatches = srMat;
+
+            //set the match count variable 
+            MatchesTextCount = "Matches: " + String.Format("{0:n0}", StringMatches.Count);
+        }
+
+        /// <summary>
+        /// Set IsMatch property on regular expression match
+        /// </summary>
+        private void IsRegMatch()
+        {
+            Match mat = _iReg.RegMatch(SingleMatchRegPattern, SingleContentRegData);
+            if (mat != null)
+            {
+                if (mat.Success)
+                {
+                    IsMatch = "TRUE";
+                }
                 else
                 {
                     IsMatch = "FALSE";
                 }
+            }
+            else
+            {
+                IsMatch = "FALSE";
             }
         }
 
