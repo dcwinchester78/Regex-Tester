@@ -180,7 +180,7 @@ namespace RegexTesterUI.ViewModels
             {
                 foreach (Match m in matches)
                 {
-                    srMat.Add($"index {m.Index}: {m.ToString()}");
+                    srMat.Add($"index {String.Format("{0:n0}",m.Index)}: {m.ToString()}");
                 }
             }
             StringMatches = srMat;
@@ -215,10 +215,10 @@ namespace RegexTesterUI.ViewModels
         #endregion
 
         //load filedata
-        public void LoadData(string data, string path)
+        public void LoadData(string _data, string _path)
         {
-            FileData = data;
-            FilePath = path;           
+            FileData = _data;
+            FilePath = _path;         
         }
 
     }

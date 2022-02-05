@@ -121,7 +121,6 @@
     <Compile Include="Models\IRegexMaster.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\RegexMaster.cs" />
-    <Compile Include="Services\DataLoading.cs" />
     <Compile Include="ViewModels\TesterViewModel.cs" />
     <Compile Include="Views\Tester.xaml.cs">
       <DependentUpon>Tester.xaml</DependentUpon>

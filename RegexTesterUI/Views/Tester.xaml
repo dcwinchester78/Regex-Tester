@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegexTesterUI.Views"
         mc:Ignorable="d"
-        Title="" Height="1000" Width="1100" Background="Black" WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        BorderBrush="Transparent"
-        BorderThickness="0"
-        AllowsTransparency="True">
+        Title="" Height="1000" Width="1150" Background="Black" WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        BorderBrush="White"
+        BorderThickness="0">
 
     <Window.Resources>
 
@@ -171,7 +170,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5"
                      Orientation="Horizontal" HorizontalAlignment="Left" 
-                     VerticalAlignment="Center" Margin="5,5,0,5" Height="40" Width="1054" RenderTransformOrigin="0.5,0.5">
+                     VerticalAlignment="Center" Margin="5,5,0,5" Height="40" Width="1080" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -201,7 +200,7 @@
             <Button Content="Load File" Width="100" Height="25" Click="LoadFileData_Click"  
                     Command="{Binding loadData}" Style="{StaticResource allButton}" />
             <Button Content="Cancel" Width="100" Height="25" Click="CancelOperation_Click"  
-                     Style="{StaticResource allButton}" Background="Red" Margin="10,5,10,5"/>
+                     Style="{StaticResource allButton}" Background="Red" Margin="20,5,10,5"/>
         </StackPanel>
 
         <!--Rich text box-->
@@ -269,7 +268,7 @@
                 <Button  Content="Single Match" Height="25" Width="150" HorizontalAlignment="left" Style="{StaticResource allButton}"
                  Command="{Binding UpdateCommand}"
                 CommandParameter="RegMatchCommand" />
-
+                <TextBlock Text="Match Found:" Margin="20,0,0,0" Foreground="White"  FontSize="16" FontWeight="Medium" Padding="0,0,0,2"/>
                 <TextBlock Text="{Binding IsMatch}" Margin="20,0,0,0" Foreground="White"  FontSize="16" FontWeight="Medium" Padding="0,0,0,2"/>
             </StackPanel>
         </StackPanel>
